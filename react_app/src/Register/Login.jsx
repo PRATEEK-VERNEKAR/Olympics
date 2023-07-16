@@ -1,9 +1,9 @@
-import React,{useState} from "react";
-import { NavLink,useNavigate } from "react-router-dom";
-import axios from 'axios';
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     type: "",
@@ -22,38 +22,35 @@ const Login = () => {
     console.log(user);
   };
 
-
   const PostData = async (e) => {
     e.preventDefault();
-    const {
-      type,
-      email,
-      password,
-    } = user;
+    const { type, email, password } = user;
 
     const api = axios.create({
       baseURL: "http://localhost:5000/api/v1",
       withCredentials: true,
       headers: {
-          "Content-type": "application/json",
+        "Content-type": "application/json",
       },
-  });
+    });
 
-    try{
-      const res=await api.post("http://localhost:8000/login",{type,email,password});
-      
+    try {
+      const res = await api.post("http://localhost:8000/login", {
+        type,
+        email,
+        password,
+      });
 
-      localStorage.setItem('token',res.data.token);
+      localStorage.setItem("token", res.data.token);
       console.log(res);
 
       // const ans=await api.get('http://localhost:8000/setuser',{ withCredentials: true });
       // console.log(ans);
 
-      if(res.status===200){
-        navigate('/');
+      if (res.status === 200) {
+        navigate("/");
       }
-    }
-    catch(err){
+    } catch (err) {
       console.log(err);
     }
   };
@@ -81,7 +78,6 @@ const Login = () => {
               required=""
               value={user.email}
               onChange={handleInputs}
-
             />
           </div>
           <div>
@@ -100,33 +96,31 @@ const Login = () => {
               required=""
               value={user.password}
               onChange={handleInputs}
-
             />
           </div>
           <div>
-          <label
-                for="type"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            <label
+              for="type"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Type
+            </label>
+            <div className="inline-block relative w-full py-1">
+              <select
+                name="type"
+                onChange={handleInputs}
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                Type
-              </label>
-              <div className="inline-block relative w-full py-1">
-                <select
-                  name="type"
-                  onChange={handleInputs}
-                  className="bg-gray-50 transparent border border-gray-300 text-gray-900 sm:text-sm md:text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled selected>
-                    Select your category
-                  </option>
-                  <option>Manager</option>
-                  <option>Coach</option>
-                  <option>Athlete</option>
-                  <option>Fan</option>
-                </select>
-              </div>
+                <option disabled selected>
+                  Select your category
+                </option>
+                <option>Manager</option>
+                <option>Coach</option>
+                <option>Athlete</option>
+                <option>Fan</option>
+              </select>
             </div>
-          
+          </div>
 
           <button
             type="submit"
@@ -137,9 +131,7 @@ const Login = () => {
           </button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
             Don't have an account?{" "}
-            <NavLink
-              to="/signertype"
-            >
+            <NavLink to="/signertype">
               <span className="font-medium text-primary-500 underline hover:text-indigo-900 dark:text-primary-500">
                 Register here
               </span>

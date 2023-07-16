@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Post = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get("http://localhost:8000/protected", {
+          headers: {
+            Authorization: token,
+          },
+        });
+        console.log(res);
+        console.log("ata pa");
+      } catch (err) {
+        console.log(err);
+        navigate("/login");
+      }
+    }
+    fetchData();
+  }, []);
+
   // maintaining the line height of the textarea
   const styles = {
     lineHeight: "2",

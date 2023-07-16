@@ -16,7 +16,7 @@ const Header = () => {
           >
             <img src={logo} className="h-16 w-36"></img>
           </a>
-          <nav className="flex lg:w-3/5 flex-wrap items-center justify-end text-xl md:ml-auto ">
+          <nav className="flex lg:w-4/5 flex-wrap items-center justify-end text-xl md:ml-auto ">
             <a
               href="https://olympics.com/en/"
               target="_blank"
@@ -27,7 +27,12 @@ const Header = () => {
             <a className="mr-5 hover:text-gray-900 cursor-pointer ">Athletes</a>
             <a className="mr-5 hover:text-gray-900 cursor-pointer ">Sports</a>
             <a className="mr-5 hover:text-gray-900 cursor-pointer ">Stats</a>
-            <a href=" http://localhost:8501" className="mr-5 hover:text-gray-900 cursor-pointer ">Graph</a>
+            <a
+              href=" http://localhost:8501"
+              className="mr-5 hover:text-gray-900 cursor-pointer "
+            >
+              Graph
+            </a>
 
             <NavLink to="/history" className="mr-5 hover:text-gray-900">
               History

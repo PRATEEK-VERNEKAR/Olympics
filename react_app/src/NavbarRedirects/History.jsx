@@ -1,31 +1,6 @@
-import React,{useEffect} from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React from "react";
 
-
-const Follow = () => {
-  const navigate=useNavigate();
-
-  useEffect( ()=>{
-    async function fetchData() {
-      try{
-        const token=localStorage.getItem('token');
-        const res=await axios.get('http://localhost:8000/protected',{
-          headers:{
-            Authorization:token
-          }
-        })
-        console.log(res);
-        console.log("ata pa")
-      }
-      catch(err){
-        console.log(err);
-        navigate('/login');
-      }
-    }
-    fetchData();
-  },[])
-
+const History = () => {
   return (
     <>
       <form class="flex flex-col items-center justify-around mx-auto md:flex-row md:items-start md:min-h-[500px] md:min-w-[1000px] py-10 my-8 bg-gradient-to-r from-blue-100 to-green-100 rounded-lg">
@@ -108,4 +83,4 @@ const Follow = () => {
   );
 };
 
-export default Follow;
+export default History;

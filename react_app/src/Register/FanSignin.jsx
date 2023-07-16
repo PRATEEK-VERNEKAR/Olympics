@@ -1,6 +1,6 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 
 const FanSignin = () => {
   const [user, setUser] = useState({
@@ -9,7 +9,7 @@ const FanSignin = () => {
     country: "",
     email: "",
     password: "",
-    cpassword:""
+    cpassword: "",
   });
 
   // user.type=location.state.type;
@@ -23,27 +23,24 @@ const FanSignin = () => {
     console.log(user);
   };
 
-
   const PostData = async (e) => {
     e.preventDefault();
-    const {
-      name,
-      gender,
-      country,
-      email,
-      password,
-    } = user;
+    const { name, gender, country, email, password } = user;
 
-    try{
-      const res=await axios.post("http://localhost:8000/fanRegister",{name,gender,country,email,password});
+    try {
+      const res = await axios.post("http://localhost:8000/fanRegister", {
+        name,
+        gender,
+        country,
+        email,
+        password,
+      });
 
       console.log(res);
-    }
-    catch(err){
+    } catch (err) {
       console.log(err);
     }
   };
-
 
   return (
     <>
@@ -72,6 +69,54 @@ const FanSignin = () => {
           </div>
           <div>
             <label
+              for="gender"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Gender
+            </label>
+            <div className="inline-block relative w-full py-1">
+              <select
+                name="gender"
+                onChange={handleInputs}
+                required
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option disabled selected>
+                  Select your gender
+                </option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Others</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="country"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Representing Country
+            </label>
+            <div className="inline-block relative w-full py-1">
+              <select
+                name="country"
+                onChange={handleInputs}
+                required
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option disabled selected>
+                  Select a country
+                </option>
+                <option value="USA">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="UK">United Kingdom</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label
               for="email"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
@@ -88,51 +133,6 @@ const FanSignin = () => {
               value={user.email}
             />
           </div>
-          <div>
-              <label
-                for="gender"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Gender
-              </label>
-              <div className="inline-block relative w-full py-1">
-                <select
-                  name="gender"
-                  onChange={handleInputs}
-                  className="bg-transparent border border-gray-300 text-gray-900 sm:text-sm md:text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled selected>
-                    Select your gender
-                  </option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Others</option>
-                </select>
-              </div>
-            </div>
-
-                        <div>
-              <label
-                for="country"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Representing Country
-              </label>
-              <div className="inline-block relative w-full py-1">
-                <select
-                  name="country"
-                  onChange={handleInputs}
-                  className="bg-transparent border border-gray-300 text-gray-900 sm:text-sm md:text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled selected>
-                    Select a country
-                  </option>
-                  <option value="USA">United States</option>
-                  <option value="Canada">Canada</option>
-                  <option value="UK">United Kingdom</option>
-                </select>
-              </div>
-            </div>
 
           <div>
             <label
@@ -205,9 +205,7 @@ const FanSignin = () => {
           </button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
             Already have an account?{" "}
-            <NavLink
-              to="/login"
-            >
+            <NavLink to="/login">
               <span className="font-medium text-primary-500 underline hover:text-indigo-900 dark:text-primary-500">
                 Login
               </span>
