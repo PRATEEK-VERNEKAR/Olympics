@@ -19,6 +19,7 @@ import Login from "./Register/Login";
 import SportsLayout from "./Sports/SportsLayout";
 import SportsArticle from "./Sports/SportsArticle";
 import CountriesLayout from "./Countries/CountriesLayout";
+import NotFoundPage from "./NotFoundPage";
 import {motion,AnimatePresence} from 'framer-motion';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                 <Route exact path="/sports" element={<SportsLayout />}></Route>
                 <Route exact path="/sportarticle" element={<SportsArticle />}></Route>
                 <Route exact path="/countries" element={<CountriesLayout />}></Route>
+                <Route element={NotFoundPage}></Route>
             </Routes>
         </div>
         <Footer />

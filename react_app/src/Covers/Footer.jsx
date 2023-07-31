@@ -17,43 +17,6 @@ const Footer = () => {
                 Olympic Games
               </p>
 
-              <ul class="mt-5 space-y-4 text-base">
-                <li>
-                  <a
-                    href="#"
-                    class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
-                  >
-                    Paris 2024
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="/history"
-                    class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
-                  >
-                    Results and Medals
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
-                  >
-                    Replays & Highlights
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
-                  >
-                    All Olympic Games
-                  </a>
-                </li>
-              </ul>
             </div>
 
             <div>
@@ -64,39 +27,39 @@ const Footer = () => {
               <ul class="mt-5 space-y-4 text-base">
                 <li>
                   <a
-                    href="#"
+                    href="https://youtu.be/lrYFimZ_1aA"
                     class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
                   >
-                    TV Channel
+                    Video Link
                   </a>
                 </li>
 
-                <li>
+                {/* <li>
                   <a
                     href="#"
                     class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
                   >
                     Live Events
                   </a>
-                </li>
+                </li> */}
 
-                <li>
+                {/* <li>
                   <a
                     href="#"
                     class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
                   >
                     Original Series
                   </a>
-                </li>
+                </li> */}
 
-                <li>
+                {/* <li>
                   <a
                     href="#"
                     class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
                   >
                     Corporate
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
 
@@ -108,16 +71,16 @@ const Footer = () => {
               <ul class="mt-5 space-y-4 text-base">
                 <li>
                   <a
-                    href="#"
+                    href="/stats"
                     class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
                   >
-                    Athletes
+                    Stats
                   </a>
                 </li>
 
                 <li>
                   <a
-                    href="#"
+                    href="/sports"
                     class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
                   >
                     Sports
@@ -126,7 +89,7 @@ const Footer = () => {
 
                 <li>
                   <a
-                    href="#"
+                    href="/country"
                     class=" text-gray-600 transition hover:text-gray-900 hover:underline dark:text-gray-200"
                   >
                     Country

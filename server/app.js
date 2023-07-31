@@ -21,12 +21,18 @@ app.use(express.static('public'));
 // });
 
 // app.use(cors());
-app.use(
-    cors({
-        credentials: true,
-        origin: "http://localhost:3000",
-    })
-);
+// app.use(
+//     cors({
+//         credentials: true,
+//         origin: "http://localhost:3000",
+//     })
+// );
+
+app.use(cors({
+    origin:['https://deploy-mern-1whq.vercel.app'],
+    methods:['POST',"GET"],
+    credentials:true
+}))
 
 app.use(passport.initialize());
 
@@ -58,6 +64,11 @@ app.get("/", (req, res) => {
     res.send(req.cookies)
  });
 
+ 
+app.use((req, res, next) => {
+    res.status(404).send(
+        "<h1>Page not found on the server</h1>")
+})
 
 app.listen(PORT,()=>{
     console.log("Server running on ",PORT);
