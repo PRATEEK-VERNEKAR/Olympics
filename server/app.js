@@ -21,12 +21,18 @@ app.use(express.static('public'));
 // });
 
 // app.use(cors());
-app.use(
-    cors({
-        credentials: true,
-        origin: "http://localhost:3000",
-    })
-);
+// app.use(
+//     cors({
+//         credentials: true,
+//         origin: "http://localhost:3000",
+//     })
+// );
+
+app.use(cors({
+    origin:['https://deploy-mern-1whq.vercel.app'],
+    methods:['POST',"GET"],
+    credentials:true
+}))
 
 app.use(passport.initialize());
 
