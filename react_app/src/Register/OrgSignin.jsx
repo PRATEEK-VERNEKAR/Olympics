@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation,useNavigate } from "react-router-dom";
 import axios from 'axios';
+import {motion} from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import { notify } from "../../../server/Routers/router";
 
 
 const OrgSignin = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   console.log(location.state.type);
+
 
   const [user, setUser] = useState({
     type: "",
@@ -44,13 +50,36 @@ const OrgSignin = () => {
       cpassword,
     } = user;
 
-    try{
-      const res=await axios.post("http://localhost:8000/orgRegister",{type,fname,lname,dob,gender,country,email,password});
 
-      console.log(res);
+    try{
+      const res=await axios.post("http://localhost:8000/orgRegister",{type,fname,lname,dob,gender,country,email,password,cpassword});
+
+
+      if(res.status===201){
+        // toast("User Created Successfully");
+        toast("Stored")
+        navigate('/login')
+      }
+      else{
+        throw new Error("Signin failed");
+      }
+      // console.log(res);
     }
     catch(err){
+      toast("Signin Failed")
+      console.log("BIG ERROR");
       console.log(err);
+      setUser({
+        type: "",
+        fname: "",
+        lname: "",
+        dob: "",
+        gender: "",
+        country: "",
+        email: "",
+        password: "",
+        cpassword: "",
+      })
     }
   };
 
@@ -59,6 +88,13 @@ const OrgSignin = () => {
 
   return (
     <>
+    <motion.div
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    transition={{duration:2}}
+    style={{color:"red",fontSize:"30px",padding:"20px"}}
+    >
       <div className="grid justify-center items-center px-6 py-3 mx-auto lg:py-14 max-w-[1000px] bg-gradient-to-r from-blue-50 to-green-50 rounded-lg">
         {/* className="grid grid-cols-1 md:grid-cols-2 gap-4"> */}
         {/*  bg-gradient-to-r from-red-200 to-indigo-200 bg-gradient-to-r from-blue-100 to-yellow-100 */}
@@ -268,7 +304,20 @@ const OrgSignin = () => {
           </div>
         </form>
       </div>
-    </>
+    </motion.div>
+    <ToastContainer
+      position="bottom-center"
+      autoClose={2000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      /> 
+      </>
   );
 };
 

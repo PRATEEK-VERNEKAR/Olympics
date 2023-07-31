@@ -1,9 +1,19 @@
 import React,{useState} from "react";
 import { NavLink,useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
+import { useDispatch } from "react-redux";
 import axios from 'axios';
+import {motion} from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const navigate=useNavigate();
+  const dispatch=useDispatch();
 
   const [user, setUser] = useState({
     type: "",
@@ -37,29 +47,43 @@ const Login = () => {
       headers: {
           "Content-type": "application/json",
       },
-  });
+    });
 
     try{
       const res=await api.post("http://localhost:8000/login",{type,email,password});
       
 
       localStorage.setItem('token',res.data.token);
+      localStorage.setItem('Email',user.email);
+      setCookie("TypeR", type, { path: "/" });
+
       console.log(res);
 
       // const ans=await api.get('http://localhost:8000/setuser',{ withCredentials: true });
       // console.log(ans);
 
       if(res.status===200){
+        dispatch({
+          type:"setloggedemail",
+          payload:user.email
+        })
         navigate('/');
       }
     }
     catch(err){
+      toast("Invalid Password");
       console.log(err);
     }
   };
 
   return (
-    <>
+    <motion.div
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    transition={{duration:0.2}}
+    style={{color:"red",fontSize:"30px",padding:"20px"}}
+>
       <div className="grid justify-center items-center px-6 py-3 mx-auto lg:py-14 max-w-[600px] bg-gradient-to-r from-blue-50 to-green-50 rounded-lg">
         <form
           method="POST"
@@ -147,7 +171,19 @@ const Login = () => {
           </p>
         </form>
       </div>
-    </>
+      <ToastContainer
+      position="bottom-center"
+      autoClose={2000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      />    
+    </motion.div>
   );
 };
 

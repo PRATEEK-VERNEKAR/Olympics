@@ -1,8 +1,14 @@
 import React,{useState} from "react";
-import { NavLink } from "react-router-dom";
-import axios from 'axios'
+import { NavLink,useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {motion} from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const FanSignin = () => {
+  const navigate=useNavigate();
+
   const [user, setUser] = useState({
     name: "",
     gender: "",
@@ -38,8 +44,11 @@ const FanSignin = () => {
       const res=await axios.post("http://localhost:8000/fanRegister",{name,gender,country,email,password});
 
       console.log(res);
+      navigate('/login');
     }
     catch(err){
+      toast("Signin Failed")
+      setUser({name: "",gender: "",country: "",email: "",password: "", cpassword:""})
       console.log(err);
     }
   };
@@ -47,6 +56,14 @@ const FanSignin = () => {
 
   return (
     <>
+
+    <motion.div
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    transition={{duration:2}}
+    style={{color:"red",fontSize:"30px",padding:"20px"}}
+>
       <div className="grid justify-center items-center px-6 py-3 mx-auto lg:py-10 max-w-[600px] bg-gradient-to-r from-blue-50 to-green-50 rounded-lg">
         <form
           method="POST"
@@ -215,7 +232,22 @@ const FanSignin = () => {
           </p>
         </form>
       </div>
+    </motion.div>
+
+    <ToastContainer
+      position="bottom-center"
+      autoClose={2000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      /> 
     </>
+    
   );
 };
 
