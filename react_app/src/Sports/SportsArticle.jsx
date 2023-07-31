@@ -1,474 +1,78 @@
-import React from 'react'
-
+import React from 'react';
+import photo from '../images/oly.jpg'
+import photo1 from '../images/1.jpg'
 const SportsArticle = () => {
   return (
-    <>
+    <div className="bg-gray-100">
+      <header className="bg-blue-500 py-4 text-center text-white">
+        <h1 className="text-4xl font-bold">Olympics</h1>
+      </header>
+      <div className="container mx-auto px-4 py-8">
+        <main className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="image-section md:col-span-2 p-4 rounded-lg bg-pink-100 shadow-md">
+            <div className="image-content flex flex-col md:flex-row md:space-x-4">
+              <img src={photo} alt="Image Description" className="w-full md:w-64 rounded mb-4 md:mb-0" />
+              <img src={photo1} alt="Image Description" className="w-full md:w-64 rounded" />
+              {/* <img src={photo1} alt="Image Description" className="w-full md:w-64 rounded" /> */}
+            </div>
+          </div>
+          <div className="major-points md:col-span-1 p-4 rounded-lg bg-white shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Major Points</h3>
+            <ul className="list-disc pl-4">
+              <li className="mb-1">Sports - 52</li>
+              <li className="mb-1">Nations - 206</li>
+              <li className="mb-1">Hosts - 26</li>
+              <li className="mb-1">Editions -27</li>
+              <li className="mb-1">Players - 116578</li>
+            </ul>
+          </div>
+          <section id="section1" className="md:col-span-2">
+            <h2 className="text-2xl font-semibold mt-8">Olympics History</h2>
+            <p className="mt-4 text-gray-700">
+            *The Olympic Games: Celebrating Global Unity and Sporting Excellence*
 
-<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
-  <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-      <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-          <header class="mb-4 lg:mb-6 not-format">
-              <address class="flex items-center mb-6 not-italic">
-                  <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                      <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos"/>
-                      <div>
-                          <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Jese Leos</a>
-                          <p class="text-base font-light text-gray-500 dark:text-gray-400">Graphic Designer, educator & CEO Flowbite</p>
-                          <p class="text-base font-light text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Feb. 8, 2022</time></p>
-                      </div>
-                  </div>
-              </address>
-              <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">Best practices for successful prototypes</h1>
-          </header>
-          <p class="lead">Flowbite is an open-source library of UI components built with the utility-first
-              classes from Tailwind CSS. It also includes interactive elements such as dropdowns, modals,
-              datepickers.</p>
-          <p>Before going digital, you might benefit from scribbling down some ideas in a sketchbook. This way,
-              you can think things through before committing to an actual design project.</p>
-          <p>But then I found a <a href="https://flowbite.com">component library based on Tailwind CSS called
-                  Flowbite</a>. It comes with the most commonly used UI components, such as buttons, navigation
-              bars, cards, form elements, and more which are conveniently built with the utility classes from
-              Tailwind CSS.</p>
-          <figure><img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt=""/>
-              <figcaption>Digital art by Anonymous</figcaption>
-          </figure>
-          <h2>Getting started with Flowbite</h2>
-          <p>First of all you need to understand how Flowbite works. This library is not another framework.
-              Rather, it is a set of components based on Tailwind CSS that you can just copy-paste from the
-              documentation.</p>
-          <p>It also includes a JavaScript file that enables interactive components, such as modals, dropdowns,
-              and datepickers which you can optionally include into your project via CDN or NPM.</p>
-          <p>You can check out the <a href="https://flowbite.com/docs/getting-started/quickstart/">quickstart
-                  guide</a> to explore the elements by including the CDN files into your project. But if you want
-              to build a project with Flowbite I recommend you to follow the build tools steps so that you can
-              purge and minify the generated CSS.</p>
-          <p>You'll also receive a lot of useful application UI, marketing UI, and e-commerce pages that can help
-              you get started with your projects even faster. You can check out this <a
-                  href="https://flowbite.com/docs/components/tables/">comparison table</a> to better understand
-              the differences between the open-source and pro version of Flowbite.</p>
-          <h2>When does design come in handy?</h2>
-          <p>While it might seem like extra work at a first glance, here are some key moments in which prototyping
-              will come in handy:</p>
-          <ol>
-              <li><strong>Usability testing</strong>. Does your user know how to exit out of screens? Can they
-                  follow your intended user journey and buy something from the site you’ve designed? By running a
-                  usability test, you’ll be able to see how users will interact with your design once it’s live;
-              </li>
-              <li><strong>Involving stakeholders</strong>. Need to check if your GDPR consent boxes are displaying
-                  properly? Pass your prototype to your data protection team and they can test it for real;</li>
-              <li><strong>Impressing a client</strong>. Prototypes can help explain or even sell your idea by
-                  providing your client with a hands-on experience;</li>
-              <li><strong>Communicating your vision</strong>. By using an interactive medium to preview and test
-                  design elements, designers and developers can understand each other — and the project — better.
-              </li>
-          </ol>
-          <h3>Laying the groundwork for best design</h3>
-          <p>Before going digital, you might benefit from scribbling down some ideas in a sketchbook. This way,
-              you can think things through before committing to an actual design project.</p>
-          <p>Let's start by including the CSS file inside the <code>head</code> tag of your HTML.</p>
-          <h3>Understanding typography</h3>
-          <h4>Type properties</h4>
-          <p>A typeface is a collection of letters. While each letter is unique, certain shapes are shared across
-              letters. A typeface represents shared patterns across a collection of letters.</p>
-          <h4>Baseline</h4>
-          <p>A typeface is a collection of letters. While each letter is unique, certain shapes are shared across
-              letters. A typeface represents shared patterns across a collection of letters.</p>
-          <h4>Measurement from the baseline</h4>
-          <p>A typeface is a collection of letters. While each letter is unique, certain shapes are shared across
-              letters. A typeface represents shared patterns across a collection of letters.</p>
-          <h3>Type classification</h3>
-          <h4>Serif</h4>
-          <p>A serif is a small shape or projection that appears at the beginning or end of a stroke on a letter.
-              Typefaces with serifs are called serif typefaces. Serif fonts are classified as one of the
-              following:</p>
-          <h4>Old-Style serifs</h4>
-          <ul>
-              <li>Low contrast between thick and thin strokes</li>
-              <li>Diagonal stress in the strokes</li>
-              <li>Slanted serifs on lower-case ascenders</li>
-          </ul><img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-2.png" alt=""/>
-          <ol>
-              <li>Low contrast between thick and thin strokes</li>
-              <li>Diagonal stress in the strokes</li>
-              <li>Slanted serifs on lower-case ascenders</li>
-          </ol>
-          <h3>Laying the best for successful prototyping</h3>
-          <p>A serif is a small shape or projection that appears at the beginning:</p>
-          <blockquote>
-              <p>Flowbite is just awesome. It contains tons of predesigned components and pages starting from
-                  login screen to complex dashboard. Perfect choice for your next SaaS application.</p>
-          </blockquote>
-          <h4>Code example</h4>
-          <p>A serif is a small shape or projection that appears at the beginning or end of a stroke on a letter.
-              Typefaces with serifs are called serif typefaces. Serif fonts are classified as one of the
-              following:</p>
+The Olympic Games, also known simply as the Olympics, are the world's most prestigious and celebrated international multi-sport event. Held every four years, the Olympics bring together athletes from different countries and cultures to compete in various sporting disciplines, promoting the values of excellence, friendship, and respect.
 
-          <h4>Table example</h4>
-          <p>A serif is a small shape or projection that appears at the beginning or end of a stroke on a letter.
-          </p>
-          <table>
-              <thead>
-                  <tr>
-                      <th>Country</th>
-                      <th>Date &amp; Time</th>
-                      <th>Amount</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>United States</td>
-                      <td>April 21, 2021</td>
-                      <td><strong>$2,300</strong></td>
-                  </tr>
-                  <tr>
-                      <td>Canada</td>
-                      <td>May 31, 2021</td>
-                      <td><strong>$300</strong></td>
-                  </tr>
-                  <tr>
-                      <td>United Kingdom</td>
-                      <td>June 3, 2021</td>
-                      <td><strong>$2,500</strong></td>
-                  </tr>
-                  <tr>
-                      <td>Australia</td>
-                      <td>June 23, 2021</td>
-                      <td><strong>$3,543</strong></td>
-                  </tr>
-                  <tr>
-                      <td>Germany</td>
-                      <td>July 6, 2021</td>
-                      <td><strong>$99</strong></td>
-                  </tr>
-                  <tr>
-                      <td>France</td>
-                      <td>August 23, 2021</td>
-                      <td><strong>$2,540</strong></td>
-                  </tr>
-              </tbody>
-          </table>
-          <h3>Best practices for setting up your prototype</h3>
-          <p><strong>Low fidelity or high fidelity?</strong> Fidelity refers to how close a prototype will be to
-              the real deal. If you’re simply preparing a quick visual aid for a presentation, a low-fidelity
-              prototype — like a wireframe with placeholder images and some basic text — would be more than
-              enough. But if you’re going for more intricate usability testing, a high-fidelity prototype — with
-              on-brand colors, fonts and imagery — could help get more pointed results.</p>
-          <p><strong>Consider your user</strong>. To create an intuitive user flow, try to think as your user
-              would when interacting with your product. While you can fine-tune this during beta testing,
-              considering your user’s needs and habits early on will save you time by setting you on the right
-              path.</p>
-          <p><strong>Start from the inside out</strong>. A nice way to both organize your tasks and create more
-              user-friendly prototypes is by building your prototypes ‘inside out’. Start by focusing on what will
-              be important to your user, like a Buy now button or an image gallery, and list each element by order
-              of priority. This way, you’ll be able to create a prototype that puts your users’ needs at the heart
-              of your design.</p>
-          <p>And there you have it! Everything you need to design and share prototypes — right in Flowbite Figma.
-          </p>
-          <section class="not-format">
-              <div class="flex justify-between items-center mb-6">
-                  <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
-              </div>
-              <form class="mb-6">
-                  <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                      <label for="comment" class="sr-only">Your comment</label>
-                      <textarea id="comment" rows="6"
-                          class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                          placeholder="Write a comment..." required></textarea>
-                  </div>
-                  <button type="submit"
-                      class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                      Post comment
-                  </button>
-              </form>
-              <article class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
-                  <footer class="flex justify-between items-center mb-2">
-                      <div class="flex items-center">
-                          <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                                  class="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                                  alt="Michael Gough"/>Michael Gough</p>
-                          <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                                  title="February 8th, 2022">Feb. 8, 2022</time></p>
-                      </div>
-                      <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
-                          class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                          type="button">
-                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                  d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                              </path>
-                          </svg>
-                          <span class="sr-only">Comment settings</span>
-                      </button>
+*Origins and History:*
+The roots of the Olympics can be traced back to ancient Greece, where the Games were first held in Olympia around 776 BCE. These ancient games were held to honor the Greek god Zeus and featured various athletic competitions, including running, wrestling, discus throwing, and chariot racing. The ancient Olympics continued for nearly 12 centuries until they were eventually banned by the Roman Emperor Theodosius I in 393 CE.
 
-                      <div id="dropdownComment1"
-                          class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                          <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                              aria-labelledby="dropdownMenuIconHorizontalButton">
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </footer>
-                  <p>Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
-                      instruments for the UX designers. The knowledge of the design tools are as important as the
-                      creation of the design strategy.</p>
-                  <div class="flex items-center mt-4 space-x-4">
-                      <button type="button"
-                          class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                          <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                          Reply
-                      </button>
-                  </div>
-              </article>
-              <article class="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
-                  <footer class="flex justify-between items-center mb-2">
-                      <div class="flex items-center">
-                          <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                                  class="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                  alt="Jese Leos"/>Jese Leos</p>
-                          <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-12"
-                                  title="February 12th, 2022">Feb. 12, 2022</time></p>
-                      </div>
-                      <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
-                          class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                          type="button">
-                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                  d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                              </path>
-                          </svg>
-                          <span class="sr-only">Comment settings</span>
-                      </button>
+The modern Olympic Games were revived in the late 19th century by French educator and historian Pierre de Coubertin. Inspired by the spirit of the ancient Games, Coubertin sought to create a global sporting event that would foster international understanding and peaceful competition. The inaugural modern Olympics took place in Athens, Greece, in 1896, and have been held every four years ever since, with the exception of interruptions during World War I and World War II.
 
-                      <div id="dropdownComment2"
-                          class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                          <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                              aria-labelledby="dropdownMenuIconHorizontalButton">
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </footer>
-                  <p>Much appreciated! Glad you liked it ☺️</p>
-                  <div class="flex items-center mt-4 space-x-4">
-                      <button type="button"
-                          class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                          <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                          Reply
-                      </button>
-                  </div>
-              </article>
-              <article class="p-6 mb-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <footer class="flex justify-between items-center mb-2">
-                      <div class="flex items-center">
-                          <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                                  class="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                                  alt="Bonnie Green"/>Bonnie Green</p>
-                          <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-03-12"
-                                  title="March 12th, 2022">Mar. 12, 2022</time></p>
-                      </div>
-                      <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
-                          class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                          type="button">
-                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                  d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                              </path>
-                          </svg>
-                          <span class="sr-only">Comment settings</span>
-                      </button>
+*The Olympic Movement:*
+The Olympics are not just a sporting event; they represent a global movement promoting peace, unity, and the values of fair play and respect. The Olympic Movement is governed by the International Olympic Committee (IOC), which oversees the planning and organization of the Games. The IOC's mission is to "contribute to building a peaceful and better world by educating youth through sport practiced without discrimination of any kind and in the Olympic spirit, which requires mutual understanding with a spirit of friendship, solidarity, and fair play."
 
-                      <div id="dropdownComment3"
-                          class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                          <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                              aria-labelledby="dropdownMenuIconHorizontalButton">
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </footer>
-                  <p>The article covers the essentials, challenges, myths and stages the UX designer should consider while creating the design strategy.</p>
-                  <div class="flex items-center mt-4 space-x-4">
-                      <button type="button"
-                          class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                          <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                          Reply
-                      </button>
-                  </div>
-              </article>
-              <article class="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <footer class="flex justify-between items-center mb-2">
-                      <div class="flex items-center">
-                          <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                                  class="mr-2 w-6 h-6 rounded-full"
-                                  src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
-                                  alt="Helene Engels"/>Helene Engels</p>
-                          <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-06-23"
-                                  title="June 23rd, 2022">Jun. 23, 2022</time></p>
-                      </div>
-                      <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
-                          class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                          type="button">
-                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                  d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                              </path>
-                          </svg>
-                      </button>
+*The Olympic Symbols:*
+The Olympics have several iconic symbols that represent its spirit and values. The Olympic Rings, designed by Coubertin in 1913, consist of five interlocking rings in different colors (blue, yellow, black, green, and red) on a white background. The rings symbolize the five continents (Europe, Asia, Africa, Americas, and Oceania) and the unity of athletes from all over the world.
 
-                      <div id="dropdownComment4"
-                          class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                          <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                              aria-labelledby="dropdownMenuIconHorizontalButton">
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                              </li>
-                              <li>
-                                  <a href="#"
-                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </footer>
-                  <p>Thanks for sharing this. I do came from the Backend development and explored some of the tools to design my Side Projects.</p>
-                  <div class="flex items-center mt-4 space-x-4">
-                      <button type="button"
-                          class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
-                          <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                          Reply
-                      </button>
-                  </div>
-              </article>
+The Olympic Flame is another significant symbol. The flame is lit in Olympia, Greece, and carried by relay to the host city, where it burns throughout the duration of the Games. The lighting of the Olympic Flame symbolizes the passing of the Olympic ideals from ancient to modern times.
+
+*The Olympic Games Today:*
+The modern Olympics have grown significantly since their inception, featuring an ever-increasing number of sports and events. In addition to traditional sports like athletics, swimming, and gymnastics, the Games have expanded to include more niche sports and disciplines to accommodate the diverse interests of athletes and spectators.
+
+Today, the Summer and Winter Olympics are held alternately every two years, with the Summer Olympics attracting a larger number of athletes and participating countries. The Games are hosted in different cities around the world, providing an opportunity for the host nation to showcase its culture, history, and hospitality to a global audience.
+
+*The Olympic Spirit:*
+Beyond the medals and records, the Olympics embody the spirit of humanity's pursuit of excellence and the power of sports to transcend boundaries. The Games bring together people of different backgrounds, cultures, and languages, fostering a sense of camaraderie and unity among nations. Athletes compete not only for personal glory but also to represent their countries and inspire the world with their passion and dedication.
+
+The Olympics have become a symbol of hope, perseverance, and resilience, especially during challenging times. They serve as a reminder that through cooperation and understanding, we can overcome obstacles and achieve greatness together.
+
+In conclusion, the Olympic Games stand as a testament to the power of sports to unite people and nations, celebrating the values of friendship, respect, and fair play. As the world comes together to witness the spectacle of athletic excellence, the Olympics continue to inspire and uplift humanity, leaving a lasting legacy of unity and peace for generations to come.
+            </p>
           </section>
-      </article>
-  </div>
-</main>
-
-<aside aria-label="Related articles" class="py-8 lg:py-24 bg-gray-50 dark:bg-gray-800">
-  <div class="px-4 mx-auto max-w-screen-xl">
-      <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">Related articles</h2>
-      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          <article class="max-w-xs">
-              <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png" class="mb-5 rounded-lg" alt="Image 1"/>
-              </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                  <a href="#">Our first office</a>
-              </h2>
-              <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
-              <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
-                  Read in 2 minutes
-              </a>
-          </article>
-          <article class="max-w-xs">
-              <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png" class="mb-5 rounded-lg" alt="Image 2"/>
-              </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                  <a href="#">Enterprise design tips</a>
-              </h2>
-              <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
-              <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
-                  Read in 12 minutes
-              </a>
-          </article>
-          <article class="max-w-xs">
-              <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-3.png" class="mb-5 rounded-lg" alt="Image 3"/>
-              </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                  <a href="#">We partnered with Google</a>
-              </h2>
-              <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
-              <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
-                  Read in 8 minutes
-              </a>
-          </article>
-          <article class="max-w-xs">
-              <a href="#">
-                  <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-4.png" class="mb-5 rounded-lg" alt="Image 4"/>
-              </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                  <a href="#">Our first project with React</a>
-              </h2>
-              <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
-              <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline">
-                  Read in 4 minutes
-              </a>
-          </article>
+          <div className="major-points md:col-span-1 p-9 rounded-lg bg-white shadow-md md:hidden">
+            <aside className="sidebar">
+              <ul className="list-disc pl-4">
+                <li><a href="#section1" className="mb-1" style={{ color: 'blue', textDecoration: 'underline' }}>MSD THE MAN THE MYTH THE LEGEND</a></li>
+                <li><a href="#section2" className="mb-1" style={{ color: 'blue', textDecoration: 'underline' }}>Early Life</a></li>
+                <li><a href="#section3" className="mb-1" style={{ color: 'blue', textDecoration: 'underline' }}>International Career</a></li>
+              </ul>
+            </aside>
+          </div>
+        </main>
       </div>
-  </div>
-</aside>
+     
+    </div>
+  );
+};
 
-<section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-      <div class="mx-auto max-w-screen-md sm:text-center">
-          <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">Sign up for our newsletter</h2>
-          <p class="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">Stay up to date with the roadmap progress, announcements and exclusive discounts feel free to sign up with your email.</p>
-          <form action="#">
-              <div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
-                  <div class="relative w-full">
-                      <label for="email" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email address</label>
-                      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                      </div>
-                      <input class="block p-3 pl-10 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter your email" type="email" id="email" required=""/>
-                  </div>
-                  <div>
-                      <button type="submit" class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Subscribe</button>
-                  </div>
-              </div>
-              <div class="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">We care about the protection of your data. <a href="#" class="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read our Privacy Policy</a>.</div>
-          </form>
-      </div>
-  </div>
-</section>
-
-
-    </>
-  )
-}
-
-export default SportsArticle;
+export default SportsArticle;

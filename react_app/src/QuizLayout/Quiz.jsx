@@ -14,7 +14,34 @@ const Quiz = () => {
   const [score,setscore]=useState(0);
   const [selected,setselected]=useState('');
   const [showSubmit,setshowSubmit]=useState(false);
-  
+
+  const [minutes, setMinutes] = useState(10);
+  const [seconds, setSeconds] = useState(0);
+  const [isCounting, setIsCounting] = useState(false);
+
+  useEffect(() => {
+    let intervalId;
+
+    if (isCounting) {
+      intervalId = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds(prevSeconds => prevSeconds - 1);
+        } else {
+          if (minutes === 0) {
+            setIsCounting(false);
+            clearInterval(intervalId);
+            // You can add code here to handle any action after the countdown ends.
+            settab(2);
+          } else {
+            setMinutes(prevMinutes => prevMinutes - 1);
+            setSeconds(59);
+          }
+        }
+      }, 1000);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [isCounting, minutes, seconds]);
   const navigate=useNavigate();
   useEffect( ()=>{
     async function fetchData() {
@@ -91,12 +118,13 @@ const Quiz = () => {
   }
 
   return (
-    <>
+    <div className='relative'>
     {
       tab===0?(
         <div className='w-full h-80 mb-4 flex justify-center items-center bg-blue-300'>
           <button onClick={(e)=>{e.preventDefault()
                                 settab(1)
+                                setIsCounting(true);
                                 startquiz()
           }} className='text-4xl border-4 border-green-500 p-2 rounded-2xl hover:bg-red-400'
           >Start Quiz</button>
@@ -104,7 +132,8 @@ const Quiz = () => {
       ):
       (tab===1?(
       <div>
-          <div className="w-1/3  mx-auto my-5 bg-stone-200 rounded-lg shadow-2xl p-6">
+          <span style={{boxShadow:'10px 20px 9px #F4AAB9'}} className='absolute top-36 left-48 bg-green-300 px-6 py-3 text-2xl rounded-2xl shadow-lg border-4 border-double border-black'>{minutes<10?"0"+minutes:minutes}:{seconds<10?"0"+seconds:seconds}</span>
+          <div style={{boxShadow:'10px 20px 9px #F4AAB9'}} className="w-1/3  mx-auto my-5 bg-stone-200 rounded-lg p-6 border-4 border-solid border-black">
             <h2 className="text-xl font-semibold mb-4">Question&nbsp;{currindex+1}</h2>
             <p className="text-gray-800 mb-4">{quesArr[currindex].question}</p>
             <ul className="space-y-2">
@@ -169,7 +198,7 @@ const Quiz = () => {
       )
     }
 
-    </>
+    </div>
   )
 }
 
