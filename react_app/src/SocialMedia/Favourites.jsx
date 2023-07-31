@@ -34,25 +34,24 @@ const Favourites = () => {
         if(res.status===401){
           throw new Error("Login first bro");
         }
-				else{
-					try{
+		else{
+			try{
 
-						const email=localStorage.getItem('Email');
-						const favres=await axios.get(`http://localhost:8000/followingfan?email=${email}`);
-						console.log("HIs")
-						console.log(favres.data.followings);
-						if(favres.data.followings!==undefined){
-							setfollowings([...favres.data.followings])
-						}
-							
-							
-						const celebs=await axios.get(`http://localhost:8000/getOrgs`);
-						console.log(celebs);
-					}
-					catch(err){
-						console.log("Some bug fetching followings");
-					}
+				const email=localStorage.getItem('Email');
+				const favres=await axios.get(`http://localhost:8000/followingfan?email=${email}`);
+				console.log(favres.data.followings);
+				if(favres.data.followings!==undefined){
+					setfollowings([...favres.data.followings])
 				}
+
+				const allcelebs=await axios.get(`http://localhost:8000/getallforfan?myemail=${email}`);
+				console.log(allcelebs.data);
+				setallcelebs(allcelebs.data);
+			}
+			catch(err){
+				console.log("Some bug fetching followings");
+			}
+		}
       }
       catch(err){
         toast("Please login first");
@@ -79,7 +78,8 @@ const Favourites = () => {
 
 	const showallCelebs=async()=>{
 		try{
-			const allcelebs=await axios.get(`http://localhost:8000/getOrgs`);
+			const email=localStorage.getItem('Email')
+			const allcelebs=await axios.get(`http://localhost:8000/getallforfan?myemail=${email}`);
 			console.log(allcelebs.data);
 			setallcelebs(allcelebs.data);
 
@@ -89,6 +89,24 @@ const Favourites = () => {
 		}
 	}
 
+	const startFollowing=async(email)=>{
+		console.log("HEKLJKLDJLKDJDKJDLK")
+		try{
+		  const myemail=localStorage.getItem('Email');
+	
+		  const res=await axios.post(`http://localhost:8000/fanstartfollowing?email`,{email:email,myemail:myemail});
+		  
+		  console.log(res);
+	
+		  window.location.reload();
+	
+	
+		}
+		catch(err){
+		  console.log(err);
+		}
+	  }
+	
 		return (
 		<>
 			<form className="flex" style={{height:"32rem"}}>
@@ -135,12 +153,19 @@ const Favourites = () => {
 						</div>
 					):
 					(
-						<div>
+						<div className="h-4/6 overflow-y-scroll">
 							Followers = {celebfollowers}
 							Followings = {celebfollowings}
 						</div>
 					)
 				}
+
+				<div className="h-1/6 border-b border-gray-200 dark:border-gray-700">
+				<button onClick={(e)=>{e.preventDefault()
+                                  startFollowing(currceleb.email)}}
+          className="text-lg border-2 border-red-100 bg-blue-300">Follow</button>
+		  </div>
+				
       </div>
 
 			<div  className="w-1/2 border-2 border-red-500">
@@ -190,8 +215,8 @@ const Favourites = () => {
 					
 				<div className='h-1/6 text-center'>
 					<button onClick={(e)=>{e.preventDefault()
-																settab2(false)
-																showallCelebs()}}>Celebs</button>
+											settab2(false)
+											showallCelebs()}}>Celebs</button>
 				</div>
 			</div>
 			</form>

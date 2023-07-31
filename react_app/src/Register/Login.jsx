@@ -1,5 +1,7 @@
 import React,{useState} from "react";
 import { NavLink,useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
 import { useDispatch } from "react-redux";
 import axios from 'axios';
 import {motion} from 'framer-motion';
@@ -8,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const navigate=useNavigate();
   const dispatch=useDispatch();
 
@@ -51,6 +55,7 @@ const Login = () => {
 
       localStorage.setItem('token',res.data.token);
       localStorage.setItem('Email',user.email);
+      setCookie("TypeR", type, { path: "/" });
 
       console.log(res);
 

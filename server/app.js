@@ -43,7 +43,8 @@ const PORT=process.env.PORT;
 const { spawn } = require('child_process');
 
 app.get('/streamlit', (req, res) => {
-  const streamlitProcess = spawn('streamlit', ['run', 'olympics.py']);
+  console.log("HI");
+  const streamlitProcess = spawn('streamlit', ['run', './Streamlit/olympics.py']);
   streamlitProcess.stdout.pipe(process.stdout);
   streamlitProcess.stderr.pipe(process.stderr);
   res.status(200).json({message:"Showing Stats"});

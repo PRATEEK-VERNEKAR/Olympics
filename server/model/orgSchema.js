@@ -36,8 +36,10 @@ const orgSchema = new mongoose.Schema({
     cpassword:String,
     followers:Number,
     followings:[
-        {
-            name:String
+        {   
+            fname:String,
+            lname:String,
+            email:String
         }
     ],
     images:[

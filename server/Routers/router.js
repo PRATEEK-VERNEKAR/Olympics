@@ -130,6 +130,7 @@ router.post('/fanregister',async (req,res)=>{
 
 router.post('/login',async(req,res)=>{
     const {email,password,type} =req.body;
+    console.log("LOGIN PAGE DUDE");
     if(!email || !password || !type){
         return res.status(400).send({
             success:false,
@@ -264,10 +265,36 @@ router.get('/getimages',async (req,res)=>{
 })
 
 
-router.get('/getOrgs',async (req,res)=>{
+router.get('/getallOrgs',async (req,res)=>{
     try{
-        const celebs=await Organiser.find().select({fname:1,lname:1,email:1,_id:0});
-        console.log(celebs);
+        const myemail=req.query.email;
+        const type=req.query.type;
+
+        console.log(myemail,type);
+        const excludedEmails=[myemail];
+
+        if(type!=='Fan'){
+            const myfollowings=await Organiser.find({email:myemail}).select({followings:1,_id:0});
+            console.log("HIELLFAn")
+            const tempremarr=myfollowings[0].followings;
+
+            tempremarr.forEach((ele)=>{
+                excludedEmails.push(ele.email);
+            })
+        }
+        else{
+            const myfollowings=await Fans.find({email:myemail}).select({followings:1,_id:0});
+            console.log("ORGAn")
+            const tempremarr=myfollowings[0].followings;
+
+            tempremarr.forEach((ele)=>{
+                excludedEmails.push(ele.email);
+            })
+        }
+        
+        console.log(excludedEmails);
+        const celebs=await Organiser.find({ email: { $nin: excludedEmails } }).select({fname:1,lname:1,email:1,_id:0});
+        // console.log(celebs);
         res.status(200).send(celebs);
     }
     catch(err){
@@ -275,6 +302,31 @@ router.get('/getOrgs',async (req,res)=>{
     }
 })
 
+
+router.get('/getallforfan',async(req,res)=>{
+    const excludedEmails=[];
+    const myemail=req.query.email;
+
+    try{
+        const myfollowings=await Fans.find({email:myemail}).select({followings:1,_id:0});
+        console.log("ORGAn")
+
+        console.log(myfollowings)
+        // const tempremarr=myfollowings[0].followings;
+
+        // tempremarr.forEach((ele)=>{
+        //     excludedEmails.push(ele.email);
+        // })
+
+        console.log(excludedEmails);
+        const celebs=await Organiser.find({ email: { $nin: excludedEmails } }).select({fname:1,lname:1,email:1,_id:0});
+        // console.log(celebs);
+        res.status(200).send(celebs);
+    }
+    catch(err){
+        console.log(err);
+    }
+})
 
 router.get('/followingfan',async (req,res)=>{
     const email=req.query.email;
@@ -288,6 +340,18 @@ router.get('/followingfan',async (req,res)=>{
     }
 })
 
+
+router.get('getfollowersnum',async (req,res)=>{
+    const email=req.query.email;
+    try{
+        const user=await Organiser.findOne({email:email})
+        console.log(user);
+        res.status(200).send(user.followers);
+    }
+    catch(err){
+        console.log(err);
+    }
+})
 
 router.post('/setQuestions',(req,res)=>{
     try{
@@ -334,6 +398,103 @@ router.get('/getQuestions',async(req,res)=>{
     }
     catch(err){
         console.log(err);
+    }
+})
+
+
+router.post('/startfollowing',async (req,res)=>{
+    const {email,myemail,type}=req.body;
+
+
+    if(type!=='Fan'){
+
+        try{
+            const myhero=await Organiser.findOne({email:email})
+
+            const user=await Organiser.updateOne({email:myemail},  {
+                $push: {
+                  followings: { fname:myhero.fname,lname:myhero.lname,email:email}
+                }
+              });
+            console.log("OLLKDKLLDJKLJ");
+            res.status(200).send("Successfully updated your followings")
+        }
+        catch(err){
+            console.log("Updating your following failed");
+        }
+    }
+    else{
+        try{
+            const myhero=await Organiser.findOne({email:email})
+            const user=await Fans.updateOne({email:myemail},  {
+                $push: {
+                  followings: { fname:myhero.fname,lname:myhero.lname,email:email}
+                }
+              },{new:true});
+
+            res.status(200).send("Successfully updated your followings")
+        }
+        catch(err){
+            console.log("Updating your following failed");
+        }
+    }
+    
+    try{
+        console.log("FOLLOWERS");
+        const userb=await Organiser.findOne({email:email});
+        let currfollowers=userb.followers;
+
+        if(currfollowers===undefined){
+            currfollowers=0;
+        }
+        console.log(currfollowers);
+
+        const userf=await Organiser.updateOne({email:email},{ $set: { followers: currfollowers+1}},{new:true});
+        console.log(userf);
+
+        // res.status(200).send("Successfully updated celebs followers")
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+
+
+router.post('/fanstartfollowing',async (req,res)=>{
+    const {email,myemail,type}=req.body;
+
+
+    try{
+        const myhero=await Organiser.findOne({email:email})
+        const user=await Fans.updateOne({email:myemail},  {
+            $push: {
+              followings: { fname:myhero.fname,lname:myhero.lname,email:email}
+            }
+          },{new:true});
+
+        res.status(200).send("Successfully updated your followings")
+    }
+    catch(err){
+        console.log("Updating your following failed");
+    }
+    
+    try{
+        console.log("FOLLOWERS");
+        const userb=await Organiser.findOne({email:email});
+        let currfollowers=userb.followers;
+
+        if(currfollowers===undefined){
+            currfollowers=0;
+        }
+        console.log(currfollowers);
+
+        const userf=await Organiser.updateOne({email:email},{ $set: { followers: currfollowers+1}},{new:true});
+        console.log(userf);
+
+        // res.status(200).send("Successfully updated celebs followers")
+    }
+    catch(err){
+        console.log(err)
     }
 })
 

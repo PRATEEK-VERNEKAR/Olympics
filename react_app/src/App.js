@@ -31,7 +31,7 @@ function App() {
         <Header />
         
         <div
-        className="md:mx-24 bg-rose-100">
+        className="md:mx-24">
             <Routes>
                 <Route exact path="/" element={<HomeApp />}></Route>
                 <Route exact path="/orgsignin" element={<OrgSignin />}></Route>
