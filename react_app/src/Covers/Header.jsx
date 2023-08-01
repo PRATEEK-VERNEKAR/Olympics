@@ -13,17 +13,25 @@ const Header = () => {
   const [type,settype]=useState('');
   useEffect( ()=>{
     function fetchdata(){
-      // setCookie("user", "HELLO", { path: "/" });
-
       const temptype=cookies['TypeR'];
       settype(temptype);
       console.log(temptype);
-
     }
 
     fetchdata();
   },[])
 
+  const dologout=async()=>{
+    // removeCookie('TypeR')
+    try{
+
+      const res=await axios.get("http://localhost:8000/doLogout");
+      console.log(res);
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -93,6 +101,12 @@ const Header = () => {
               />
               Login
             </NavLink>
+            <button
+              onClick={dologout}
+              className="flex items-center mr-5 hover:text-gray-900"
+            >
+              Logout
+            </button>
           </nav>
         </div>
       </header>

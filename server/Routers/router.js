@@ -209,13 +209,30 @@ router.get('/protected',passport.authenticate('jwt',{session:false}),(req,res)=>
 });
 
 router.get('/getsports',async (req,res)=>{
-    const sports=await Sports.find({})
-    res.send(sports);
+    try{
+        const sports=await Sports.find({})
+        if(sports===undefined){
+            return res.status(404).send("No sports data found");
+        }
+        res.status(200).send(sports);
+    }
+    catch(err){
+        res.status(500).send("Could not fetch sports data Server Error")
+    }
 })
 
 router.get('/getcountries',async (req,res)=>{
-    const countries=await Countries.find({})
-    res.send(countries);
+
+    try{
+        const countries=await Countries.find({})
+        if(countries===undefined){
+            return res.status(404).send("No sports data found");
+        }
+        res.status(200).send(countries);
+    }
+    catch(err){
+        res.status(500).send("Could not fetch sports data Server Error")
+    }
 })
 
 const storage=multer.diskStorage({
@@ -234,18 +251,18 @@ const upload=multer({
 
 router.post('/upload',upload.single('file'),async (req,res)=>{
     try{
-
         console.log(req.file);
         const email=req.query.email;
         console.log(email);
-        console.log("HI")
-    
-    
+
         const user=await Organiser.updateOne({email:email},{$push:{images:{img:req.file.filename}}});
         console.log(user);
+
+        res.status(200).send("Image Added Successfully");
     }
     catch(err){
         console.log("ERROR while uploading");
+        res.status(404).send("Error while uploading");
     }
 })
 
@@ -254,13 +271,25 @@ router.get('/getimages',async (req,res)=>{
     try{
         const email=req.query.email;
         console.log(email);
-        console.log("HIHI");
         const user=await Organiser.find({email:email});
         console.log(user);
         res.status(200).send(user);
     }
     catch(err){
         console.log(err)
+        res.status(404).send("Image area not found");
+    }
+})
+
+router.get('/followingfan',async (req,res)=>{
+    const email=req.query.email;
+    try{
+        const user=await Fans.findOne({email:email});
+        console.log(user);
+        res.status(200).send(user);
+    }
+    catch(err){
+        console.log(err);
     }
 })
 
@@ -294,11 +323,11 @@ router.get('/getallOrgs',async (req,res)=>{
         
         console.log(excludedEmails);
         const celebs=await Organiser.find({ email: { $nin: excludedEmails } }).select({fname:1,lname:1,email:1,_id:0});
-        // console.log(celebs);
         res.status(200).send(celebs);
     }
     catch(err){
         console.log(err);
+        res.status(404).send("Could fetch all stars");
     }
 })
 
@@ -312,33 +341,19 @@ router.get('/getallforfan',async(req,res)=>{
         console.log("ORGAn")
 
         console.log(myfollowings)
-        // const tempremarr=myfollowings[0].followings;
 
-        // tempremarr.forEach((ele)=>{
-        //     excludedEmails.push(ele.email);
-        // })
 
         console.log(excludedEmails);
         const celebs=await Organiser.find({ email: { $nin: excludedEmails } }).select({fname:1,lname:1,email:1,_id:0});
-        // console.log(celebs);
+
         res.status(200).send(celebs);
     }
     catch(err){
         console.log(err);
+        res.status(404).send("Could fetch all stars");
     }
 })
 
-router.get('/followingfan',async (req,res)=>{
-    const email=req.query.email;
-    try{
-        const user=await Fans.findOne({email:email});
-        console.log(user);
-        res.status(200).send(user);
-    }
-    catch(err){
-        console.log(err);
-    }
-})
 
 
 router.get('getfollowersnum',async (req,res)=>{
@@ -350,6 +365,7 @@ router.get('getfollowersnum',async (req,res)=>{
     }
     catch(err){
         console.log(err);
+        res.status(404).send("Followers not found");
     }
 })
 
@@ -368,26 +384,25 @@ router.post('/setQuestions',(req,res)=>{
                 console.log("INNer catch",err);
             }
         });
-
-        res.send("Save successfully");
+        res.status(200).send("Save successfully");
     }
     catch(err){
+        res.status(403).send("Could not save questions");
         console.log(err);
     }
 })
 
 router.get('/getQuestions',async(req,res)=>{
     try{
-
         const nums = new Set();
         while(nums.size !== 10) {
             nums.add(Math.floor(Math.random() * 100) + 1);
         }
-        
+
         let Sno=[...nums];
-        
+
         let questions=[];
-        
+
         for(let i=0;i<10;i++){
             const eachques=await Quiz.find({questionNo:Sno[i]});
             questions.push(...eachques)
@@ -398,6 +413,7 @@ router.get('/getQuestions',async(req,res)=>{
     }
     catch(err){
         console.log(err);
+        res.status(204).send("No questions");
     }
 })
 
@@ -417,7 +433,6 @@ router.post('/startfollowing',async (req,res)=>{
                 }
               });
             console.log("OLLKDKLLDJKLJ");
-            res.status(200).send("Successfully updated your followings")
         }
         catch(err){
             console.log("Updating your following failed");
@@ -432,7 +447,6 @@ router.post('/startfollowing',async (req,res)=>{
                 }
               },{new:true});
 
-            res.status(200).send("Successfully updated your followings")
         }
         catch(err){
             console.log("Updating your following failed");
@@ -452,7 +466,7 @@ router.post('/startfollowing',async (req,res)=>{
         const userf=await Organiser.updateOne({email:email},{ $set: { followers: currfollowers+1}},{new:true});
         console.log(userf);
 
-        // res.status(200).send("Successfully updated celebs followers")
+        res.status(200).send("Successfully updated your followings")
     }
     catch(err){
         console.log(err)
@@ -472,10 +486,10 @@ router.post('/fanstartfollowing',async (req,res)=>{
             }
           },{new:true});
 
-        res.status(200).send("Successfully updated your followings")
     }
     catch(err){
         console.log("Updating your following failed");
+        res.status(406).send("Could update following list")
     }
     
     try{
@@ -491,11 +505,18 @@ router.post('/fanstartfollowing',async (req,res)=>{
         const userf=await Organiser.updateOne({email:email},{ $set: { followers: currfollowers+1}},{new:true});
         console.log(userf);
 
-        // res.status(200).send("Successfully updated celebs followers")
+        res.status(200).send("Successfully updated your followings")
     }
     catch(err){
         console.log(err)
+        res.status(406).send("Could update following list")
     }
+})
+
+
+router.get('doLogout',(req,res)=>{
+    console.log(req.cookies);
+    res.send("Logging Out");
 })
 
 
