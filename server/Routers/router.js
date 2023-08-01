@@ -169,10 +169,10 @@ router.post('/login',async(req,res)=>{
     }
 
 
-    res.cookie("Type",req.body.type,{
-        expires:new Date(Date.now() + 25892000000),
-        httpOnly:true
-    });
+    // res.cookie("Type",req.body.type,{
+    //     expires:new Date(Date.now() + 25892000000),
+    //     httpOnly:true
+    // });
 
 
     console.log(req.cookies);
@@ -196,8 +196,8 @@ router.get('/cookie',(req,res)=>{
 
 
 router.get('/protected',passport.authenticate('jwt',{session:false}),(req,res)=>{
-
-    console.log(req.cookies);
+    console.log("PRateek')")
+    console.log("LINE NO @)))",req.cookies);
     
     return res.status(200).send({
         success:true,
@@ -514,7 +514,7 @@ router.post('/fanstartfollowing',async (req,res)=>{
 })
 
 
-router.get('doLogout',(req,res)=>{
+router.get('/doLogout',(req,res)=>{
     console.log(req.cookies);
     res.send("Logging Out");
 })
