@@ -54,7 +54,6 @@ To setup the OlympicHub project on your local machine, follow these steps:
 3.Install dependencies
 
 ```bash
-  Instal node and npm
   npm install
 ```
 
