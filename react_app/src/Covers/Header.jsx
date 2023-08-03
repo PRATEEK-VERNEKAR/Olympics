@@ -6,11 +6,12 @@ import { useCookies } from "react-cookie";
 import logo from "../img/logo2.png";
 import signup from "../img/signUp.png";
 import login from "../img/log-in.png";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 
 
 
 const Header = () => {
+  const navigate=useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [type,settype]=useState('');
   useEffect( ()=>{
@@ -24,6 +25,7 @@ const Header = () => {
   },[])
 
   const dologout=async()=>{
+    navigate('/')
     removeCookie('TypeR')
     localStorage.removeItem('Email')
     localStorage.removeItem('token')

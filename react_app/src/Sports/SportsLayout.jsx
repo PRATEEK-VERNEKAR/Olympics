@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 
-const useGetSports = () => {
+const useGetSports = (setPhotoModules) => {
   const [sports, setsports] = React.useState([]);
 
   useEffect(() => {
@@ -23,11 +23,18 @@ const useGetSports = () => {
     };
 
     fetchData();
-  }, []);
 
-  useEffect(() => {
-    console.log('Updated sports state:', sports);
-  }, [sports]);
+    const importPhotos = async () => {
+      const photoModuleArray = await Promise.all(
+        Array.from({ length: 52 }, (_, index) =>
+          import(`../images/${index + 1}.jpg`)
+        )
+      );
+      setPhotoModules(photoModuleArray);
+    };
+    importPhotos();
+
+  }, []);
 
   return sports;
 };
@@ -41,23 +48,25 @@ const Text=styled.p`
 
 
 const ExampleComponent = () => {
-  const SportsArray = useGetSports();
   const navigate=useNavigate();
-
 
   const [photoModules, setPhotoModules] = useState([]);
 
-  useEffect(() => {
-    const importPhotos = async () => {
-      const photoModuleArray = await Promise.all(
-        Array.from({ length: 52 }, (_, index) =>
-          import(`../images/${index + 1}.jpg`)
-        )
-      );
-      setPhotoModules(photoModuleArray);
-    };
-    importPhotos();
-  }, []);
+  const SportsArray = useGetSports(setPhotoModules);
+
+
+
+  // useEffect(() => {
+  //   const importPhotos = async () => {
+  //     const photoModuleArray = await Promise.all(
+  //       Array.from({ length: 52 }, (_, index) =>
+  //         import(`../images/${index + 1}.jpg`)
+  //       )
+  //     );
+  //     setPhotoModules(photoModuleArray);
+  //   };
+  //   importPhotos();
+  // }, []);
 
   const handleClick=()=>{
     navigate('/sportarticle');

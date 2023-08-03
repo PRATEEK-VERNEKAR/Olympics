@@ -4,13 +4,22 @@ import axios from 'axios';
 import {motion} from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { notify } from "../../../server/Routers/router";
 
+import dayjs from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+// import { notify } from "../../../server/Routers/router";
 
 const OrgSignin = () => {
   const location = useLocation();
   const navigate = useNavigate();
   console.log(location.state.type);
+  console.log(location.pathname);
+  console.log(location.hash);
+  console.log(location.search);
 
 
   const [user, setUser] = useState({
@@ -25,6 +34,9 @@ const OrgSignin = () => {
     cpassword: "",
   });
 
+  const [valuea, setValue] = React.useState(dayjs('2022-04-17'));
+
+
   user.type=location.state.type;
 
   let name, value;
@@ -34,6 +46,7 @@ const OrgSignin = () => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
     console.log(user);
+    console.log(user.dob);
   };
 
   const PostData = async (e) => {
@@ -86,6 +99,8 @@ const OrgSignin = () => {
   // Validate the date
   const dateRegex = /^(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1[0-2])-(19|20)\d{2}$/;
 
+
+
   return (
     <>
     <motion.div
@@ -134,7 +149,7 @@ const OrgSignin = () => {
                 id="name"
                 onChange={handleInputs}
                 value={user.lname}
-                className="bg-transparent border border-gray-300 text-gray-900 sm:text-sm md:text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-transparent border-2 border-gray-300 text-gray-900 sm:text-sm md:text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Last Name"
                 required=""
               />
@@ -146,7 +161,7 @@ const OrgSignin = () => {
               >
                 Date Of Birth
               </label>
-              <input
+              {/* <input
                 type="text"
                 name="dob"
                 id="name"
@@ -155,8 +170,21 @@ const OrgSignin = () => {
                 className="bg-transparent border border-gray-300 text-gray-900 sm:text-sm md:text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="dd-mm-yyyy"
                 required=""
-              />
+              /> */}
+
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DatePicker', 'DatePicker']}>
+                <DatePicker
+                  disableFuture={true}
+                  value={value}
+                  onChange={(newValue) => {console.log(newValue.$d)
+                  setValue(newValue.$d)
+                  setUser({...user,'dob':newValue.$d})}}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             </div>
+
 
             <div>
               <label
