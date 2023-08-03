@@ -8,6 +8,7 @@ const Favourites = () => {
 	const navigate=useNavigate();
 	const [tab1,settab1]=useState(true);
 	const [tab2,settab2]=useState(true);
+	const [tab3,settab3]=useState(false);
 	const [currceleb,setcurrceleb]=useState([{fname:"",lname:'',email:''}])
 	const [disimg,setdisimg]=useState([{img:"",_id:""}]);
 	const [allcelebs,setallcelebs]=useState([{fname:'',lname:'',email:''}]);
@@ -38,6 +39,7 @@ const Favourites = () => {
 			try{
 
 				const email=localStorage.getItem('Email');
+				console.log(email)
 				const favres=await axios.get(`http://localhost:8000/followingfan?email=${email}`);
 				console.log(favres.data.followings);
 				if(favres.data.followings!==undefined){
@@ -109,7 +111,7 @@ const Favourites = () => {
 	
 		return (
 		<>
-			<form className="flex" style={{height:"32rem"}}>
+			<form className="flex" style={{height:"40rem"}}>
 				<div className="w-1/2 text-center bg-slate-200 border-2 border-red-500">        
         <div className="h-1/6 border-b border-gray-200 dark:border-gray-700">
             <ul className="flex justify-evenly flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
@@ -153,25 +155,37 @@ const Favourites = () => {
 						</div>
 					):
 					(
-						<div className="h-4/6 overflow-y-scroll">
-							Followers = {celebfollowers}
-							Followings = {celebfollowings}
+						<div className="h-4/6 overflow-y-scroll flex flex-col justify-center items-center">
+							<span className='bg-blue-200 border-2 border-black text-2xl rounded-2xl my-3 p-2'>Followers = {celebfollowers}</span>
+							<span className='bg-blue-200 border-2 border-black text-2xl rounded-2xl my-3 p-2'>Followings = {celebfollowings}</span>
 						</div>
 					)
 				}
 
-				<div className="h-1/6 border-b border-gray-200 dark:border-gray-700">
-				<button onClick={(e)=>{e.preventDefault()
-                                  startFollowing(currceleb.email)}}
-          className="text-lg border-2 border-red-100 bg-blue-300">Follow</button>
-		  </div>
+				{
+					tab3?(
+						<div className="h-1/6 border-b border-gray-200 dark:border-gray-700">
+						<button className='bg-blue-200 border-2 border-black text-2xl mt-2 py-1 px-2' 
+						onClick={(e)=>{e.preventDefault()
+										startFollowing(currceleb.email)}}
+						>Follow</button>
+						</div>
+					):
+					(
+						<></>
+					)
+				}
+
 				
       </div>
 
 			<div  className="w-1/2 border-2 border-red-500">
 				<div className='h-1/6 text-center'>
-					<button onClick={(e)=>{e.preventDefault()
-																	settab2(true)}}>Followings</button>
+					<button className='bg-blue-200 border-2 border-black text-2xl mt-2 py-1 px-2'
+					onClick={(e)=>{e.preventDefault()
+								    settab2(true)
+									settab3(false)
+									}}>Followings</button>
 				</div>
 
 				{
@@ -181,8 +195,8 @@ const Favourites = () => {
 							followings.map((ele)=>{
 								return(
 									<div onClick={()=>{settab1(true);
-																			setcurrceleb(ele)
-																			showFavCeleb(currceleb.email)}} 
+														setcurrceleb(ele)
+														showFavCeleb(currceleb.email)}} 
 										className='flex justify-center px-1 my-1 mx-2 text-xl rounded-2xl border-2'>
 										<span className=''>{ele.fname}</span>
 										<span>&nbsp;&nbsp;&nbsp;</span>
@@ -199,8 +213,8 @@ const Favourites = () => {
 							allcelebs.map((ele)=>{
 								return(
 									<div onClick={()=>{settab1(true)
-																		 setcurrceleb(ele)
-																		 showFavCeleb(currceleb.email)}}
+														setcurrceleb(ele)
+														showFavCeleb(currceleb.email)}}
 										className='flex justify-center px-1 my-1 mx-2 text-xl rounded-2xl border-2'>
 										<span className=''>{ele.fname}</span>
 										<span>&nbsp;&nbsp;&nbsp;</span>
@@ -214,8 +228,10 @@ const Favourites = () => {
 				}
 					
 				<div className='h-1/6 text-center'>
-					<button onClick={(e)=>{e.preventDefault()
+					<button className='bg-blue-200 border-2 border-black text-2xl mt-2 py-1 px-2'
+									onClick={(e)=>{e.preventDefault()
 											settab2(false)
+											settab3(true)
 											showallCelebs()}}>Celebs</button>
 				</div>
 			</div>

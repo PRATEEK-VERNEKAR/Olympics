@@ -27,7 +27,7 @@ router.post('/orgregister',async (req,res)=>{
         console.log("HJKHJK")
         
         const checkall=await authSchemaOrg.validateAsync(req.body);
-        console.log("HJKHJK")
+        console.log(req.body)
         
         // const {type,fname,lname,dob,gender,country,email,password,cpassword}=req.body;
         const {type,fname,lname,dob,gender,country,email,password,cpassword}=checkall;
@@ -169,10 +169,10 @@ router.post('/login',async(req,res)=>{
     }
 
 
-    res.cookie("Type",req.body.type,{
-        expires:new Date(Date.now() + 25892000000),
-        httpOnly:true
-    });
+    // res.cookie("Type",req.body.type,{
+    //     expires:new Date(Date.now() + 25892000000),
+    //     httpOnly:true
+    // });
 
 
     console.log(req.cookies);
@@ -196,8 +196,8 @@ router.get('/cookie',(req,res)=>{
 
 
 router.get('/protected',passport.authenticate('jwt',{session:false}),(req,res)=>{
-
-    console.log(req.cookies);
+    console.log("PRateek')")
+    console.log("LINE NO @)))",req.cookies);
     
     return res.status(200).send({
         success:true,
@@ -334,14 +334,20 @@ router.get('/getallOrgs',async (req,res)=>{
 
 router.get('/getallforfan',async(req,res)=>{
     const excludedEmails=[];
-    const myemail=req.query.email;
+    const myemail=req.query.myemail;
+    console.log(myemail);
 
     try{
         const myfollowings=await Fans.find({email:myemail}).select({followings:1,_id:0});
         console.log("ORGAn")
 
-        console.log(myfollowings)
+        console.log(myfollowings[0].followings)
 
+        const tempremarr=myfollowings[0].followings;
+
+        tempremarr.forEach((ele)=>{
+            excludedEmails.push(ele.email);
+        })
 
         console.log(excludedEmails);
         const celebs=await Organiser.find({ email: { $nin: excludedEmails } }).select({fname:1,lname:1,email:1,_id:0});
@@ -514,7 +520,7 @@ router.post('/fanstartfollowing',async (req,res)=>{
 })
 
 
-router.get('doLogout',(req,res)=>{
+router.get('/doLogout',(req,res)=>{
     console.log(req.cookies);
     res.send("Logging Out");
 })

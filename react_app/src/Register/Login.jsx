@@ -21,7 +21,6 @@ const Login = () => {
     password: "",
   });
 
-  // user.type=location.state.type;
 
   let name, value;
   const handleInputs = (e) => {
@@ -50,7 +49,7 @@ const Login = () => {
     });
 
     try{
-      const res=await api.post("http://localhost:8000/login",{type,email,password});
+      const res=await axios.post("http://localhost:8000/login",{type,email,password});
       
 
       localStorage.setItem('token',res.data.token);
@@ -62,13 +61,17 @@ const Login = () => {
       // const ans=await api.get('http://localhost:8000/setuser',{ withCredentials: true });
       // console.log(ans);
 
+      
       if(res.status===200){
         dispatch({
           type:"setloggedemail",
           payload:user.email
         })
         navigate('/');
+        window.location.reload();
       }
+
+
     }
     catch(err){
       toast("Invalid Password");

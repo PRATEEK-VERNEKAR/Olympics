@@ -149,7 +149,7 @@ const Post = () => {
   return (
     <>
 
-    <form className="flex" style={{height:"32rem"}}>
+    <form className="flex" style={{height:"40rem"}}>
       {
         youorwho?(
 
@@ -159,7 +159,7 @@ const Post = () => {
                     <li className="mr-2">
                         <button onClick={(e)=>{e.preventDefault()
                                               settab1(false)
-                                              // seePhotos()
+                                              seePhotos()
                                               }}
                             className={(tab1?"inline-flex items-center justify-center p-4 text-blue-600 rounded-t-lg  dark:text-blue-500 dark:border-blue-500 group":"active inline-flex items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500 group")}
                             >
@@ -179,7 +179,6 @@ const Post = () => {
                         </button>
                     </li>
                 </ul>
-                {'abc@gmail.com'}
             </div>
 
             {
@@ -211,7 +210,7 @@ const Post = () => {
               <div className="h-1/6">
                     <button type="submit" onClick={(e)=>{e.preventDefault()
                                                         settab1(true)}} 
-                        className="p-1 m-1 border-2 rounded-lg text-center">Upload Photo</button>
+                    className='bg-blue-200 border-2 border-black text-2xl mt-2 py-1 px-2'>Upload Photo</button>
               </div>
             }
           </div>
@@ -270,12 +269,12 @@ const Post = () => {
         <div className="h-1/6 border-b border-gray-200 dark:border-gray-700">
           <button onClick={(e)=>{e.preventDefault()
                                   startFollowing(currceleb.email)}}
-          className="text-lg border-2 border-red-100 bg-blue-300">Follow</button>
+          className='bg-blue-200 border-2 border-black text-2xl mt-2 mx-1 py-1 px-2'>Follow</button>
           <button onClick={()=>{setyourowho(true)
                                 seePhotos()
                                 setcurrceleb([{fname:'',lname:'',email:''}])
                                 }}
-              className="text-lg border-2 border-red-100 bg-blue-300" >View Your Profile</button>
+          className='bg-blue-200 border-2 border-black text-2xl mt-2 mx-1 py-1 px-2' >View Your Profile</button>
         </div>
       </div>
         )
@@ -309,14 +308,17 @@ const Post = () => {
 
         {
           tab2===1?(
-            <div className="flex flex-col justify-center items-center text-2xl h-4/6 border-2 border-green-500">
-                Your Followers
-                <p>{followerscnt}</p>
+            <div className=" flex flex-col justify-center items-center h-4/6">
+              <div className="h-1/2 w-1/2 flex flex-col justify-center items-center gap-5 text-2xl bg-blue-200 border-2 border-black rounded-2xl my-3 p-2">
+
+                <span >Your Followers</span>
+                <span >{followerscnt}</span>
+              </div>
             </div>
           ):
           (tab2==2?(
-            <div className="flex flex-col justify-center items-center text-2xl h-4/6 border-2 border-green-500">
-            Your Followings
+            <div className="flex flex-col justify-center items-center text-2xl h-4/6">
+            <span>Your Followings&nbsp;{followings.length}</span>
 
             {
               followings.map((ele)=>{
@@ -362,7 +364,7 @@ const Post = () => {
           <button onClick={(e)=>{e.preventDefault()
                                   settab2(0);
                                 }
-                          } className="p-1 m-1 border-2 rounded-lg">
+                          }  className='bg-blue-200 border-2 border-black text-2xl mt-2 py-1 px-2'>
             Follow Celebs
           </button>
         </div>
