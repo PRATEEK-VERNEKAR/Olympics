@@ -13,6 +13,16 @@
     box-shadow: 5px 10px #b8b6b6;
 }
 
+.sportswrapper img{
+    transition: .2s linear;
+}
+
+.sportswrapper img:hover{
+    transform: scaleY(1.02);
+    border:2px solid gray;
+    box-shadow: 5px 10px #b8b6b6;
+}
+
 
 .carousel-container .popup-img{
     position: fixed;

@@ -63,17 +63,14 @@ const FanSignin = () => {
     exit={{opacity:0}}
     transition={{duration:2}}
     style={{color:"red",fontSize:"30px",padding:"20px"}}
->
+    >
       <div className="grid justify-center items-center px-6 py-3 mx-auto lg:py-10 max-w-[600px] bg-gradient-to-r from-blue-50 to-green-50 rounded-lg">
         <form
           method="POST"
           class="space-y-4 md:space-y-6 rounded-xl px-14 py-6 bg-gradient-to-r from-blue-200 to-green-200"
         >
           <div>
-            <label
-              for="name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Your Name
             </label>
             <input
@@ -88,10 +85,7 @@ const FanSignin = () => {
             />
           </div>
           <div>
-            <label
-              for="email"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Your email
             </label>
             <input
@@ -106,10 +100,7 @@ const FanSignin = () => {
             />
           </div>
           <div>
-              <label
-                for="gender"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
+              <label for="gender" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Gender
               </label>
               <div className="inline-block relative w-full py-1">
@@ -128,11 +119,8 @@ const FanSignin = () => {
               </div>
             </div>
 
-                        <div>
-              <label
-                for="country"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
+            <div>
+              <label for="country" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Representing Country
               </label>
               <div className="inline-block relative w-full py-1">
@@ -152,10 +140,7 @@ const FanSignin = () => {
             </div>
 
           <div>
-            <label
-              for="password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Password
             </label>
             <input
@@ -170,10 +155,7 @@ const FanSignin = () => {
             />
           </div>
           <div>
-            <label
-              for="cpassword"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label for="cpassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Confirm password
             </label>
             <input
@@ -198,15 +180,9 @@ const FanSignin = () => {
               />
             </div>
             <div class="ml-3 text-sm">
-              <label
-                for="terms"
-                class="font-light text-gray-500 dark:text-gray-300"
-              >
+              <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
                 I accept the{" "}
-                <a
-                  class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  href="#"
-                >
+                <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">
                   Terms and Conditions
                 </a>
               </label>

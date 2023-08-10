@@ -49,7 +49,7 @@ const UniCarousel = ({parentCallback}) => {
             <img src={p} className='object-fill h-80' onClick={()=>{handleClick(p)}} onhover='scale-50'></img>
             <div  className="w-full h-24 p-4 text-md">
                 <Text>Fred is inquisitive and creative, and always conjuring up ways to improve Binaryville. He's twiways to improve Binaryville. He's twiways to improve Binaryville. He's twicys to improve Binaryville. He's twicys to improve Binaryville. He's twicys to improve Binaryville. He's twicys to improve Binaryville. He's twicys to improve Binaryville. He's twicys to improve Binaryville. He's twicys to improve Binaryville. He's twicys to improve Binaryville. He's twice been awarded the highly coveted BinaryvilleMedallionOfHonorAndExcellentAward</Text>
-              </div>
+            </div>
             {/* {
               click? <Modal image={img}></Modal>:""
             } */}

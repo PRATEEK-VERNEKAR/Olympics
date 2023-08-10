@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import img from '../img/dummy.jpg'
+import "../App.css"
 const useGetCountry = () => {
     const [country, setcountry] = React.useState([]);
   
@@ -28,27 +30,47 @@ const useGetCountry = () => {
 
 
 const CountriesLayout = () => {
-    const CountriesArray = useGetCountry();
-    const navigate=useNavigate();
-
+  const CountriesArray = useGetCountry();
+  const navigate=useNavigate();
+  const [clicked,setclicked]=useState(false);
+  
+  const removeZoom=()=>{
+    setclicked("")
+  }
     console.log(CountriesArray)
     return (
-      <div>
-        <div className=''>
-        {CountriesArray.map((item) => (
-            <div key={item.id}>
-              <div className='wrapper m-5 grid grid-cols-4 border-2 rounded-md' >
-                <h1 className='text-center'>{item.region}</h1>
-                <h1 className='text-center'>{item.Gold}</h1>
-                <h1 className='text-center'>{item.Silver}</h1>
-                <h1 className='text-center'>{item.Bronze}</h1>
-
-              </div>
+      <div className='carousel-container'>
+        {CountriesArray.map((item,index) => (
+          <div>
+            <div className='grid grid-cols-2 gap-x-0.5' >
+            {
+              index%2===0?(
+                <h1 onClick={()=>{setclicked(true)}} className='text-center border-2 rounded-md py-2 text-2xl'>{item.region}</h1>
+              ):
+              (
+                <h1 onClick={()=>{setclicked(true)}} className='col-start-2 text-center border-2 rounded-md py-2 text-2xl'>{item.region}</h1>
+              )
+            }
             </div>
+          </div>
         ))}
-        </div>
+
+        {
+          clicked?(
+            <div className='popup-img'>
+            <span onClick={removeZoom}>&times;</span>
+            <img src={img} alt='Img'></img>
+          </div>
+          ):
+          (
+            ""
+          )
+        }
+
+
       </div>
     );
 }
 
-export default CountriesLayout
+export default CountriesLayout;
+
