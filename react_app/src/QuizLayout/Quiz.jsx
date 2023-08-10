@@ -1,5 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import ReactLoading from "react-loading";
+
 import axios from 'axios';
 
 const Quiz = () => {
@@ -18,6 +20,10 @@ const Quiz = () => {
   const [minutes, setMinutes] = useState(10);
   const [seconds, setSeconds] = useState(0);
   const [isCounting, setIsCounting] = useState(false);
+
+  const [isloading,setisloading]=useState(false);
+
+  const navigate=useNavigate();
 
   useEffect(() => {
     let intervalId;
@@ -42,7 +48,8 @@ const Quiz = () => {
 
     return () => clearInterval(intervalId);
   }, [isCounting, minutes, seconds]);
-  const navigate=useNavigate();
+
+
   useEffect( ()=>{
     async function fetchData() {
       try{
@@ -67,9 +74,18 @@ const Quiz = () => {
         console.log(err);
         navigate('/login');
       }
+
     }
     fetchData();
+
   },[])
+
+  // useEffect(()=>{
+  //   setisloading(true);
+  //   setTimeout(() => {
+  //     setisloading(false);
+  //   }, 1000);
+  // },[tab])
 
   const startquiz=async()=>{
     try{
@@ -118,13 +134,28 @@ const Quiz = () => {
   }
 
   return (
+    <>
+    {
+
+    isloading?(
+      <div className='w-full h-80 mb-4 flex flex-col justify-center items-center bg-blue-300'>
+      <ReactLoading type="spokes" color="#0000FF" className='mx-auto '
+                height={100} width={50} />
+      <p>Loading Questions</p>
+      </div>
+    ):(
+
     <div className='relative'>
     {
       tab===0?(
         <div className='w-full h-80 mb-4 flex justify-center items-center bg-blue-300'>
           <button onClick={(e)=>{e.preventDefault()
                                 settab(1)
-                                setIsCounting(true);
+                                setisloading(true)
+                                setTimeout(()=>{
+                                  setisloading(false);
+                                  setIsCounting(true);
+                                },4000)
                                 startquiz()
           }} className='text-4xl border-4 border-green-500 p-2 rounded-2xl hover:bg-red-400'
           >Start Quiz</button>
@@ -148,7 +179,11 @@ const Quiz = () => {
             </ul>
 
           <div className='text-center mt-2'>
-            <button className='rounded-md px-2 m-2 border-2 border-blue-600 hover:bg-red-600'>Stop</button>
+            <button onClick={(e)=>{
+              e.preventDefault()
+              settab(2)
+            }} 
+            className='rounded-md px-2 m-2 border-2 border-blue-600 hover:bg-red-600'>Stop</button>
             <button onClick={(e)=>{
               e.preventDefault()
               if(currindex!==0){
@@ -199,6 +234,10 @@ const Quiz = () => {
     }
 
     </div>
+    )
+  }
+
+    </>
   )
 }
 
